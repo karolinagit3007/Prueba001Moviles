@@ -27,36 +27,86 @@ class Cuerpo extends StatelessWidget {
         title: const Text(
           'Pantalla 1',
           style: TextStyle(
-            color: Color.fromRGBO(0, 0, 0, 1), 
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
           ),
         ),
-        backgroundColor: const Color.fromRGBO(224, 51, 51, 1), 
+        backgroundColor: const Color.fromRGBO(224, 51, 51, 1),
       ),
       drawer: MiDrawer(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text("Nombre: Karolina Gavilema "), 
-          const Text("Usuario de GitHub: karolinagit3007"), 
-          const SizedBox(height: 20),
-          pagina_btn(context),
-          imagenLocal(),
-        ],
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 150),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: const [
+                    Text(
+                      "Nombre: Karolina Gavilema",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Usuario de GitHub: karolinagit3007",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton.icon(
+                onPressed: () => navegar02(context),
+                icon: const Icon(Icons.navigate_next_outlined, color: Colors.white),
+                label: const Text(
+                  "Ir a la página 2",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(224, 51, 51, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                ),
+              ),
+              const SizedBox(height: 30),
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  image: const DecorationImage(
+                    image: AssetImage("assets/images/main.webp"),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
-
-
-Widget pagina_btn(BuildContext context) {
-  return ElevatedButton.icon(
-    onPressed: () => navegar02(context),
-    label: const Text("Ir a la página 2"),
-    icon: const Icon(Icons.navigate_next_outlined),
-  );
-}
-
 
 void navegar02(BuildContext context) {
   showDialog(
@@ -67,7 +117,7 @@ void navegar02(BuildContext context) {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              Navigator.pop(context); 
+              Navigator.pop(context);
             },
             child: const Text('Cancelar'),
           ),
@@ -84,10 +134,4 @@ void navegar02(BuildContext context) {
       );
     },
   );
-}
-
-
-//IMAGEN LOCAL
-Widget imagenLocal(){
-  return Image.asset("assets/images/main.webp");
 }
